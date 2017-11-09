@@ -1,0 +1,15 @@
+import scrapy
+from bs4 import BeautifulSoup
+
+class AppleCrawler(CrawlSpider):
+	domains = ['www.9800.com.tw']
+	name = 'lotter'
+	start_urls = [
+	'http://www.9800.com.tw/lotto649/statistics50.html',
+	]
+
+	def parse(self,response):
+		res = BeautifulSoup(response.body,'lxml')
+		tbodys = res.select('tbody')
+		for tbody in tbodys:
+			print (tbody.text)
